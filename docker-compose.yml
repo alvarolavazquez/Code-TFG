@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+
+  mongo:
+    container_name: mongo
+    image: mongo:6
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  client:
+    container_name: client_Ecommerce
+    restart: unless-stopped
+    image: e-commerce-social:1.0.0
+    build:
+      context: client
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+
+  App:
+    container_name: App_Ecommerce
+    restart: unless-stopped
+    image: ecommerce:0.1.0
+    build:
+      context: App
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - client
+
+
+volumes:
+  mongo-data:

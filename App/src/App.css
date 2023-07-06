@@ -1,0 +1,14 @@
+.navbarMenu {
+  background-color:#5DADE2;
+  height: 60%;
+}
+/*.navbarMenu.NavDropdown.Item {
+  background-color:#5DADE2;
+}*/
+
+.navbarMenu.span{
+
+  position:'absolute'; 
+  right: '50px';
+
+}
